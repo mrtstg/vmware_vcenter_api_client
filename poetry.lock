@@ -336,6 +336,23 @@ setproctitle = ["setproctitle"]
 testing = ["filelock"]
 
 [[package]]
+name = "pyvmomi"
+version = "8.0.0.1.1"
+description = "VMware vSphere Python SDK"
+category = "main"
+optional = false
+python-versions = ">=2.7.9, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+files = [
+    {file = "pyvmomi-8.0.0.1.1.tar.gz", hash = "sha256:620db8bb03f3c2fc56e0d5a0710ff10e6ff1ba8535b0b76c8754b99cbf732c5a"},
+]
+
+[package.dependencies]
+six = ">=1.7.3"
+
+[package.extras]
+sso = ["lxml", "pyOpenSSL", "pywin32"]
+
+[[package]]
 name = "rfc3986"
 version = "1.5.0"
 description = "Validating URI References per RFC 3986"
@@ -352,6 +369,18 @@ idna = {version = "*", optional = true, markers = "extra == \"idna2008\""}
 
 [package.extras]
 idna2008 = ["idna"]
+
+[[package]]
+name = "six"
+version = "1.16.0"
+description = "Python 2 and 3 compatibility utilities"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+files = [
+    {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
+    {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
+]
 
 [[package]]
 name = "sniffio"
@@ -380,4 +409,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "ae12e706b80670d8286649aa3dd626e6e06fd547eab61a0d4395fd05b1e4184b"
+content-hash = "e4f7f45e1ddc33ea133176d4c17dc89ad2637851ecfe9c5980cef810a0008f15"
