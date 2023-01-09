@@ -116,7 +116,6 @@ class ApiClient:
                 continue
 
             for snapshot in self._lookup_snapshots(vim_vm.snapshot.rootSnapshotList):
-                print(snapshot, type(snapshot))
                 if snapshot.name == name:
                     tasks.append(snapshot.snapshot.RemoveSnapshot_Task(False))
                     stats[vm.vm] = True
