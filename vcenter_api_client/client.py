@@ -66,7 +66,7 @@ class ApiClient:
             if not isinstance(snapshot, list):
                 res.append(snapshot)
             if snapshot.childSnapshotList is not None and snapshot.childSnapshotList:  # type: ignore
-                res.append(self._lookup_snapshots(snapshot.childSnapshotList, False))  # type: ignore
+                res.extend(self._lookup_snapshots(snapshot.childSnapshotList, False))  # type: ignore
 
         if filter_l:
             f_res = []
