@@ -17,7 +17,7 @@ class ApiClient:
     def _generate_httpx_client(
         base_url: str, verify: bool = True, **kwargs
     ) -> httpx.Client:
-        rturn httpx.Client(base_url=base_url, verify=verify, timeout=15, **kwargs)
+        return httpx.Client(base_url=base_url, verify=verify, timeout=15, **kwargs)
 
     def _authenticate(self):
         token = base64.b64encode(
