@@ -3,12 +3,14 @@ import httpx
 import base64
 from .structs.vm import VM
 from .structs.folder import Folder
-from pyVim.connect import SmartConnect, Disconnect, vim
-from pyVim.task import WaitForTasks, WaitForTask
+from pyVim.connect import SmartConnect, vim
+from pyVim.task import WaitForTasks
+from typing import Any
 
 
 class ApiClient:
     session: httpx.Client
+    sdk_client: None | Any
     login: str
     password: str
     session_id: str
@@ -31,6 +33,7 @@ class ApiClient:
         self.session.headers = {"vmware-api-session-id": self.session_id}
 
     def _get_vim_vm_by_bios_uuid(self, uuid: str) -> vim.VirtualMachine | None:
+        assert self.sdk_client is not None
         return self.sdk_client.RetrieveContent().searchIndex.FindByUuid(
             uuid=uuid, vmSearch=True
         )
@@ -178,14 +181,24 @@ class ApiClient:
             response_list.append(VM(vm))
         return response_list
 
-    def __init__(self, host: str, login: str, password: str, verify: bool = True):
+    def __init__(
+        self,
+        host: str,
+        login: str,
+        password: str,
+        verify: bool = True,
+        avoid_sdk: bool = False,
+    ):
         self.session = self._generate_httpx_client(host, verify)
-        self.sdk_client = SmartConnect(
-            host=host[host.find("//") + 2 :],
-            user=login,
-            pwd=password,
-            sslContext=ssl.SSLContext(ssl.PROTOCOL_TLS),
-        )
+        if not avoid_sdk:
+            self.sdk_client = SmartConnect(
+                host=host[host.find("//") + 2 :],
+                user=login,
+                pwd=password,
+                sslContext=ssl.SSLContext(ssl.PROTOCOL_TLS),
+            )
+        else:
+            self.sdk_client = None
         self.login = login
         self.password = password
         self._authenticate()
