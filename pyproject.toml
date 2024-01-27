@@ -2,8 +2,8 @@
 name = "vcenter-api-client"
 version = "0.1.0"
 description = ""
-authors = ["mrtstg <russiankurwacsgo@gmail.com>"]
-license = "GNU GPLv3"
+authors = ["mrtstg <mrtstgdev@gmail.com>"]
+license = "BSD-3-Clause"
 readme = "README.md"
 packages = [{include = "vcenter_api_client"}]
 
